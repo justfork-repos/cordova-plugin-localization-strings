@@ -18,28 +18,28 @@ Modify your project root to have the following structure:
 ```
 Cordova Project Root
   |
-  |__ translations
+  |__ www
            |
-           |__ app
+           |__ languages
                 |
-                |__  en.json
-                |__  es.json
-                |__  ja.json
+                |__  lang.en_US.json
+                |__  lang.es_ES.json
+                |__  lang.ja_JP.json
                 
 ```
 
 A JSON file may look like this  (Note: Breaking change from 1.0.0 onwards - new JSON format).
 ```json
 {
-	"config_ios" : {
+	"universal_ticket_config_ios" : {
 		"NSCameraUsageDescription": "Take pictures",
 		"CFBundleDisplayName": "Some App Name",
 		"CFBundleName": "Some App Name"
 	},
-	"config_android" : {
+	"universal_ticket_config_android" : {
 		"app_name": "Some App Name"
 	},
-	"app" : {
+	"universal_ticket" : {
 		"HAVE_MAIL_TITLE": "You have mail.",
 		"HAVE_MAIL_MSG": "%1$@ has you a message titled \\\"%2$@\\\""
 	}
@@ -80,19 +80,19 @@ N.B.  The "locale" key is optional (if platform localization is not required).
 zh-Hans.json
 ```json
 {
-	"locale": {
+	"universal_ticket_locale": {
 		"ios": ["zh-Hans"],
 		"android": ["zh-rCN"]
 	},
-	"config_ios": {
+	"universal_ticket_config_ios": {
 		"NSCameraUsageDescription": "扫描二维码",
 		"CFBundleDisplayName": "应用程序名称",
 		"CFBundleName": "应用程序名称"
 	},
-	"config_android": {
+	"universal_ticket_config_android": {
 		"app_name": "应用程序名称"
 	},
-	"app": {
+	"universal_ticket": {
 		"HAVE_MAIL_TITLE": "你收到了邮件",
 		"HAVE_MAIL_MSG": "％1$@给您发送了封邮件，标题为\\\"％2$@\\\""
 	}
@@ -103,19 +103,19 @@ zh-Hans.json
 zh-Hant.json
 ```json
 {
-	"locale": {
+	"universal_ticket_locale": {
 		"ios": ["zh-Hant"],
 		"android": ["zh-rTW", "zh-rHK"]
 	},
-	"config_ios": {
+	"universal_ticket_config_ios": {
 		"NSCameraUsageDescription": "掃描二維碼",
 		"CFBundleDisplayName": "應用程序名稱",
 		"CFBundleName": "應用程序名稱"
 	},
-	"config_android": {
+	"universal_ticket_config_android": {
 		"app_name": "應用程序名稱"
 	},
-	"app": {
+	"universal_ticket": {
 		"HAVE_MAIL_TITLE": "你收到了郵件",
 		"HAVE_MAIL_MSG": "％1$@給您發送了封郵件，標題為\\\"％2$@\\\""
 	}
@@ -140,11 +140,11 @@ The plugin will help to localize your app name if you require it to be named dif
 
 ```json
 {
-	"config_ios" : {
+	"universal_ticket_config_ios" : {
 		"CFBundleDisplayName": "Some App Name",
 		"CFBundleName": "Some App Name"
 	},
-	"config_android" : {
+	"universal_ticket_config_android" : {
 		"app_name": "Some App Name"
 	}
 }
@@ -158,7 +158,7 @@ Example usage:
 
 ```json
 {
-	"config_ios" : {
+	"universal_ticket_config_ios" : {
 		"NSCameraUsageDescription": "Take pictures",
 		"NSLocationUsageDescription": "Need Location for Some Purpose",
 	}
@@ -184,7 +184,7 @@ Example usage:
 
 ```json
 {
-	"app" : {
+	"universal_ticket" : {
 		"HAVE_MAIL_TITLE": "You have mail.",
 		"HAVE_INVITE_MSG": "%1$@ has invited you to game room %2$@"
 	}
@@ -209,28 +209,28 @@ And on Android, the respective locale's strings.xml:
 
 ## Details (iOS)
 
-The plugin reads the assumed directory structure.  The plugin reads from all the fields in config_ios and writes into the InfoPlist.strings, which will be placed in the respective locale.lproj directory.   The rest of the strings in "app" will be placed in the Localizable.strings file and placed in the locale directory. 
+The plugin reads the assumed directory structure.  The plugin reads from all the fields in config_ios and writes into the InfoPlist.strings, which will be placed in the respective locale.lproj directory.   The rest of the strings in "universal_ticket" will be placed in the Localizable.strings file and placed in the locale directory. 
 
 ## Details (Android)
 
-The plugin reads the assumed directory structure, the plugin will combine all properties in "config_android" and "app", and inserted into the strings.xml of the locale's  /res/val-locale/strings.xml 
+The plugin reads the assumed directory structure, the plugin will combine all properties in "universal_ticket_config_android" and "universal_ticket", and inserted into the strings.xml of the locale's  /res/val-locale/strings.xml 
 
 
 ## Override platform specific translations:
 ```json
 {
-    "app": {
+    "universal_ticket": {
         "HAVE_MAIL_TITLE": "Sie haben Post. This should be overwritten by platform-specific string.",
         "HAVE_MAIL_MSG": "%1$@ has you a message titled \\\"%2$@\\\""
     },
-    "app_ios": {
+    "universal_ticket_universal_ticket_app_ios": {
         "HAVE_MAIL_TITLE": "Sie haben Post in iOS.",
         "Key with Spaces": "Schlüssel mit Leerzeichen"
     },
-    "app_android": {
+    "universal_ticket_app_android": {
         "HAVE_MAIL_TITLE": "Sie haben Post in Android.",
         "ONLY_ON_ANDROID": "Testmeldung nur unter Android."
     }
 }
 ```
-(if `app_ios` or `app_android` are detected they will be used and override keys from `app`)
+(if `universal_ticket_app_ios` or `universal_ticket_app_android` are detected they will be used and override keys from `universal_ticket`)

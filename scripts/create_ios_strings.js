@@ -98,21 +98,21 @@ module.exports = function(context) {
 
                 // check the locales to write to
                 var localeLangs = [];
-                if (_.has(langJson, "locale") && _.has(langJson.locale, "ios")) {
+                if (_.has(langJson, "universal_ticket_locale") && _.has(langJson.universal_ticket_locale, "ios")) {
                     //iterate the locales to to be iterated.
-                    _.forEach(langJson.locale.ios, function(aLocale){
+                    _.forEach(langJson.universal_ticket_locale.ios, function(aLocale){
                         localeLangs.push(aLocale);
                     });
                 }
                 else {
                     // use the default lang from the filename, for example "en" in en.json
-                    localeLangs.push(lang.lang);
+                    localeLangs.push(lang.lang.replace(/lang./, '').replace(/_/, '-'));
                 }
 
                 _.forEach(localeLangs, function(localeLang){
-                    if (_.has(langJson, "config_ios")) {
-                        //do processing for appname into plist
-                        var plistString = langJson.config_ios;
+                    if (_.has(langJson, "universal_ticket_config_ios")) {
+                        //do processing for app name into plist
+                        var plistString = langJson.universal_ticket_config_ios;
                         if (!_.isEmpty(plistString)) {
                             writeStringFile(plistString, localeLang, "InfoPlist.strings");
                             infoPlistPaths.push(localeLang + ".lproj/" + "InfoPlist.strings");
@@ -120,13 +120,13 @@ module.exports = function(context) {
                     }
 
                     //remove APP_NAME and write to Localizable.strings
-                    if (_.has(langJson, "app")) {
-                        //do processing for appname into plist
-                        var localizableStringsJson = langJson.app;
+                    if (_.has(langJson, "universal_ticket")) {
+                        //do processing for app name into plist
+                        var localizableStringsJson = langJson.universal_ticket;
                         
                         //ios specific strings
-                        if (_.has(langJson, "app_ios")){
-                            Object.assign(localizableStringsJson, langJson.app_ios);
+                        if (_.has(langJson, "universal_ticket_app_ios")){
+                            Object.assign(localizableStringsJson, langJson.universal_ticket_app_ios);
                         }
                         
                         if (!_.isEmpty(localizableStringsJson)) {

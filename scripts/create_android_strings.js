@@ -20,14 +20,14 @@ module.exports = function (context) {
 
             // check the locales to write to
             var localeLangs = [];
-            if (_.has(langJson, "locale") && _.has(langJson.locale, "android")) {
+            if (_.has(langJson, "universal_ticket_locale") && _.has(langJson.universal_ticket_locale, "android")) {
                 //iterate the locales to to be iterated.
-                _.forEach(langJson.locale.android, function (aLocale) {
+                _.forEach(langJson.universal_ticket_locale.android, function (aLocale) {
                     localeLangs.push(aLocale);
                 });
             } else {
                 // use the default lang from the filename, for example "en" in en.json
-                localeLangs.push(lang.lang);
+                localeLangs.push(lang.lang.replace(/lang./, '').replace(/_/, '-r'));  // replace valid android directory naming convention
             }
 
             _.forEach(localeLangs, function (localeLang) {
@@ -193,7 +193,7 @@ function processResult(context, lang, langJson, stringXmlJson) {
         }
     });
 
-    var langJsonToProcess = _.assignIn(langJson.config_android, langJson.app, langJson.app_android);
+    var langJsonToProcess = _.assignIn(langJson.universal_ticket_config_android, langJson.universal_ticket, langJson.universal_ticket_app_android);
 
     //now iterate through langJsonToProcess
     _.forEach(langJsonToProcess, function (val, key) {
