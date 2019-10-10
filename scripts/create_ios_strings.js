@@ -152,10 +152,10 @@ module.exports = function(context) {
                   fs.writeFileSync(getXcodePbxProjPath(), proj.writeSync());
                   console.log('new pbx project written with localization groups');
                   
-                  var platformPath   = path.join( context.opts.projectRoot, "platforms", "ios" );
-                  var projectFileApi = require( path.join( platformPath, "/cordova/lib/projectFile.js" ) );
-                  projectFileApi.purgeProjectFileCache( platformPath );
-                  console.log(platformPath + ' purged from project cache');
+                //   var platformPath   = path.join( context.opts.projectRoot, "platforms", "ios" );
+                //   var projectFileApi = require( path.join( platformPath, "/cordova/lib/projectFile.js" ) );
+                //   projectFileApi.purgeProjectFileCache( platformPath );
+                //   console.log(platformPath + ' purged from project cache');
                   
                   resolve();
               });
