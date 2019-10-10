@@ -193,7 +193,7 @@ function processResult(context, lang, langJson, stringXmlJson) {
         }
     });
 
-    var langJsonToProcess = _.assignIn(langJson.universal_ticket_config_android, langJson.universal_ticket, langJson.universal_ticket_app_android);
+    var langJsonToProcess = _.assignIn(langJson.universal_ticket_config_android, langJson.universal_ticket/*, langJson.universal_ticket_app_android*/);
 
     //now iterate through langJsonToProcess
     _.forEach(langJsonToProcess, function (val, key) {

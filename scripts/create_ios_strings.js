@@ -125,9 +125,9 @@ module.exports = function(context) {
                         var localizableStringsJson = langJson.universal_ticket;
                         
                         //ios specific strings
-                        if (_.has(langJson, "universal_ticket_app_ios")){
-                            Object.assign(localizableStringsJson, langJson.universal_ticket_app_ios);
-                        }
+                        // if (_.has(langJson, "universal_ticket_app_ios")){
+                        //     Object.assign(localizableStringsJson, langJson.universal_ticket_app_ios);
+                        // }
                         
                         if (!_.isEmpty(localizableStringsJson)) {
                             writeStringFile(localizableStringsJson, localeLang, "Localizable.strings");
