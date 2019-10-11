@@ -198,7 +198,7 @@ function processResult(context, lang, langJson, stringXmlJson) {
     //now iterate through langJsonToProcess
     _.forEach(langJsonToProcess, function (val, key) {
         // positional string format is in Mac OS X format.  change to android format
-        val = val.replace(/\$@/gi, "$s");
+        val = val.replace(/\%@/gi, "%s");
         val = val.replace(/\'/gi, "\\'");
 
         if (_.has(mapObj, key)) {
