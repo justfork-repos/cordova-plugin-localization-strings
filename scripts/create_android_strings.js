@@ -27,7 +27,11 @@ module.exports = function (context) {
                 });
             } else {
                 // use the default lang from the filename, for example "en" in en.json
-                localeLangs.push(lang.lang.replace(/lang./, '').replace(/_/, '-r'));  // replace valid android directory naming convention
+                var val = lang.lang.replace(/lang./, '').replace(/_/, '-r');
+                if (val === 'en-rUS') {
+                    localeLangs.push('en');
+                }
+                localeLangs.push(val);  // replace valid android directory naming convention
             }
 
             _.forEach(localeLangs, function (localeLang) {
